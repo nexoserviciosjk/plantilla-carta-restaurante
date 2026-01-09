@@ -1,37 +1,42 @@
+/* ===== FUENTE PERSONALIZADA ===== */
 @font-face {
   font-family: 'Karate';
   src: url('Karate.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap; /* optimiza la carga */
 }
 
-/* ===== GENERAL ===== */
+/* ===== ESTILO GENERAL ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #2b0000, #120000);
+  background: radial-gradient(circle at top, #2b0000, #120000); /* Fondo general del body */
   color: #fff;
 }
 
 /* ===== HEADER ===== */
 header {
   text-align: center;
-  padding: 25px;
-  background-image: url('san-joy-lao-logo.jpg');
+  padding: 20px;
+  /* Fondo del header (aquí pones tu propia imagen) */
+  background-image: url('tu-imagen.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-bottom: 3px solid #d4af37;
+  border-bottom: 3px solid #d4af37; /* Borde dorado */
 }
 
+/* Título dentro del header */
 header h1 {
-  font-family: 'Karate', serif;
+  font-family: 'Karate', serif; /* Fuente personalizada */
   margin: 0;
   color: #d4af37;
   letter-spacing: 2px;
+  text-shadow: 1px 1px 3px #000; /* Hace que el texto resalte sobre cualquier fondo */
 }
 
-/* ===== SECCIONES ===== */
+/* ===== BOTONES DE SECCIONES ===== */
 .menu-sections {
   display: flex;
   flex-wrap: wrap;
@@ -40,6 +45,7 @@ header h1 {
   padding: 15px;
 }
 
+/* Ocultar secciones si es necesario */
 .menu-sections.hidden {
   display: none;
 }
@@ -54,7 +60,14 @@ header h1 {
   cursor: pointer;
 }
 
-/* ===== PLATOS ===== */
+/* Hover para los botones */
+.menu-sections button:hover {
+  background: linear-gradient(145deg, #7a0000, #b00000);
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+/* ===== LISTA DE PLATOS ===== */
 .plato-btn {
   background: #220000;
   border: 1px solid #d4af37;
@@ -71,7 +84,7 @@ header h1 {
   font-weight: bold;
 }
 
-/* ===== DETALLE PLATO ===== */
+/* ===== DETALLE DE PLATO ===== */
 .plato-detalle {
   text-align: center;
   padding: 20px;
@@ -80,14 +93,18 @@ header h1 {
 }
 
 .plato-detalle h2 {
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   color: #d4af37;
   font-size: 1.8rem;
 }
 
 .plato-detalle p {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
+  margin: 0 0 20px 0;
+  font-size: 1.1rem;
+  color: #fff;
+  text-align: left;
+  line-height: 1.6;
+  white-space: pre-line;
 }
 
 .plato-detalle img {
@@ -96,9 +113,10 @@ header h1 {
   height: auto;
   border-radius: 15px;
   border: 2px solid #d4af37;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
-/* ===== BOTÓN VOLVER ===== */
+/* Botón para volver */
 .btn-back {
   margin-top: 25px;
   background: #d4af37;
@@ -120,6 +138,11 @@ header h1 {
   margin-bottom: 18px;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+
+.banquete-card:hover {
+  transform: translateY(-5px);
 }
 
 .banquete-card h3 {
@@ -130,20 +153,4 @@ header h1 {
 .banquete-card p {
   font-size: 1.3rem;
   font-weight: bold;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
-  .plato-detalle p {
-    font-size: 1.2rem;
-  }
-
-  .plato-detalle h2 {
-    font-size: 1.5rem;
-  }
-
-  .menu-sections button {
-    padding: 8px 14px;
-    font-size: 0.9rem;
-  }
 }
