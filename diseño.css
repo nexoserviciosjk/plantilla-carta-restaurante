@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'Karate';
+  src: url('Karate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ===== GENERAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #2b0000, #120000);
+  color: #fff;
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 25px;
+  background-image: url('san-joy-lao-logo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-bottom: 3px solid #d4af37;
+}
+
+header h1 {
+  font-family: 'Karate', serif;
+  margin: 0;
+  color: #d4af37;
+  letter-spacing: 2px;
+}
+
+/* ===== SECCIONES ===== */
+.menu-sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+}
+
+.menu-sections.hidden {
+  display: none;
+}
+
+.menu-sections button {
+  background: linear-gradient(145deg, #b00000, #7a0000);
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ===== PLATOS ===== */
+.plato-btn {
+  background: #220000;
+  border: 1px solid #d4af37;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.plato-precio {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+/* ===== DETALLE PLATO ===== */
+.plato-detalle {
+  text-align: center;
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.plato-detalle h2 {
+  margin-bottom: 10px;
+  color: #d4af37;
+  font-size: 1.8rem;
+}
+
+.plato-detalle p {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.plato-detalle img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 15px;
+  border: 2px solid #d4af37;
+}
+
+/* ===== BOTÓN VOLVER ===== */
+.btn-back {
+  margin-top: 25px;
+  background: #d4af37;
+  color: #4d0000;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* ===== BANQUETES ===== */
+.banquete-card {
+  background: linear-gradient(145deg, #200000, #3b0000);
+  border: 2px solid #d4af37;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.banquete-card h3 {
+  color: #d4af37;
+  margin-bottom: 10px;
+}
+
+.banquete-card p {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .plato-detalle p {
+    font-size: 1.2rem;
+  }
+
+  .plato-detalle h2 {
+    font-size: 1.5rem;
+  }
+
+  .menu-sections button {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+}
