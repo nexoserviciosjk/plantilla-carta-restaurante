@@ -11,7 +11,6 @@
 
 <!-- ===== HEADER ===== -->
 <header>
-  <!-- Nombre del restaurante -->
   <h1>CHIFA SAN JOY LAO</h1>
 </header>
 
@@ -24,18 +23,31 @@
 <!-- ===== PUBLICIDAD SOLO AL INICIO ===== -->
 <div id="ad-container" style="text-align:center; margin:20px 0;"></div>
 
-<!-- ===== SCRIPT ===== -->
+<!-- ===== SCRIPTS ===== -->
 <script src="platos.js"></script>
 
-<!-- ===== OCULTAR PUBLICIDAD SI NO EXISTE ===== -->
+<!-- ===== PUBLICIDAD DINÁMICA ===== -->
 <script>
-  const adImg = document.getElementById('ad-img');
   const adContainer = document.getElementById('ad-container');
+  const adImgSrc = 'publicidad.jpg'; // ruta de tu imagen de publicidad
 
-  // Ocultar publicidad si la imagen no carga
-  adImg.onerror = () => { adContainer.style.display = 'none'; };
-  if (!adImg.complete || adImg.naturalWidth === 0) {
-    adContainer.style.display = 'none';
+  if (adImgSrc) {
+    const imgTest = new Image();
+    imgTest.src = adImgSrc;
+
+    imgTest.onload = () => {
+      const img = document.createElement('img');
+      img.src = adImgSrc;
+      img.alt = "Publicidad";
+      img.style.maxWidth = "600px";
+      img.style.width = "90%";
+      img.style.borderRadius = "15px";
+      img.style.border = "2px solid #d4af37";
+      img.style.boxShadow = "0 8px 20px rgba(0,0,0,0.5)";
+      adContainer.appendChild(img);
+    };
+
+    // Si la imagen no carga, no se agrega nada → contenedor queda vacío
   }
 </script>
 
