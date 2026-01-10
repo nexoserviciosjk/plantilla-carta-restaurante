@@ -209,6 +209,10 @@ for (let section in data) {
 
 /* ===== FUNCIONES ===== */
 function showList(section) {
+  // ✅ Mostrar publicidad al volver a la lista
+  const ad = document.getElementById('ad-container');
+  if (ad) ad.style.display = 'block';
+
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
   data[section].forEach(item => {
@@ -221,7 +225,10 @@ function showList(section) {
 }
 
 function showDetail(item, section) {
+  // ✅ Ocultar botones y publicidad al mostrar detalle
   sectionsDiv.classList.add("hidden");
+  const ad = document.getElementById('ad-container');
+  if (ad) ad.style.display = 'none';
 
   // Creamos un contenedor detalle
   contentDiv.innerHTML = `<div class="plato-detalle"></div>`;
@@ -253,4 +260,4 @@ function showDetail(item, section) {
       <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
     `;
   }
-      }
+}
