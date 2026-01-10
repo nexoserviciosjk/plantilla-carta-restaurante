@@ -13,27 +13,27 @@
   <h1>CHIFA SAN JOY LAO</h1>
 </header>
 
-<!-- ===== BANNER PUBLICITARIO ===== -->
-<section class="banner-publicitario" id="banner-publicitario">
-  <img src="pub1.jpg" class="banner-img active">
-  <img src="pub2.jpg" class="banner-img">
-  <img src="pub3.jpg" class="banner-img">
-</section>
-
 <!-- ===== BOTONES DE SECCIONES ===== -->
 <nav class="menu-sections" id="sections"></nav>
 
 <!-- ===== CONTENIDO DE PLATOS ===== -->
 <main class="platos" id="content"></main>
 
+<!-- ===== BANNER PUBLICITARIO INFERIOR ===== -->
+<section class="banner-inferior" id="banner-inferior">
+  <img src="pub1.jpg" class="banner-img active">
+  <img src="pub2.jpg" class="banner-img">
+  <img src="pub3.jpg" class="banner-img">
+</section>
+
 <!-- ===== BOTÓN WHATSAPP ===== -->
 <a href="https://wa.me/51999999999" class="btn-whatsapp" target="_blank">
-  <i class="fab fa-whatsapp"></i> <!-- icono de WhatsApp con fontawesome -->
+  <img src="whatsapp.png" alt="WhatsApp">
 </a>
 
 <!-- ===== BOTÓN DIRECCIÓN ===== -->
 <a href="https://maps.google.com/?q=CHIFA+SAN+JOY+LAO" class="btn-direccion" target="_blank">
-  📍
+  <img src="direccion.png" alt="Dirección">
 </a>
 
 <!-- ===== SCRIPT ORIGINAL ===== -->
@@ -41,10 +41,9 @@
 
 <!-- ===== SCRIPT CARRUSEL + OCULTAR BANNER ===== -->
 <script>
-  // Carrusel de banner
-  const banners = document.querySelectorAll('.banner-img');
+  // Carrusel banner inferior
+  const banners = document.querySelectorAll('.banner-inferior .banner-img');
   let index = 0;
-
   setInterval(() => {
     banners[index].classList.remove('active');
     index = (index + 1) % banners.length;
@@ -53,17 +52,14 @@
 
   // Ocultar banner al entrar en sección
   const sectionsButtons = document.querySelectorAll('.menu-sections button');
-  const banner = document.getElementById('banner-publicitario');
+  const banner = document.getElementById('banner-inferior');
 
   sectionsButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      banner.style.display = 'none'; // desaparece el banner al seleccionar sección
+      banner.style.display = 'none';
     });
   });
 </script>
-
-<!-- ===== FONT AWESOME PARA ICONO WHATSAPP ===== -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
