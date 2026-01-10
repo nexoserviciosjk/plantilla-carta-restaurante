@@ -4,14 +4,14 @@
   src: url('Karate.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap; /* optimiza la carga */
+  font-display: swap;
 }
 
 /* ===== ESTILO GENERAL ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #2b0000, #120000); /* Fondo general del body */
+  background: radial-gradient(circle at top, #2b0000, #120000);
   color: #fff;
 }
 
@@ -19,21 +19,19 @@ body {
 header {
   text-align: center;
   padding: 20px;
-  /* Fondo del header (aquí pones tu propia imagen) */
   background-image: url('tu-imagen.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-bottom: 3px solid #d4af37; /* Borde dorado */
+  border-bottom: 3px solid #d4af37;
 }
 
-/* Título dentro del header */
 header h1 {
-  font-family: 'Karate', serif; /* Fuente personalizada */
+  font-family: 'Karate', serif;
   margin: 0;
   color: #d4af37;
   letter-spacing: 2px;
-  text-shadow: 1px 1px 3px #000; /* Hace que el texto resalte sobre cualquier fondo */
+  text-shadow: 1px 1px 3px #000;
 }
 
 /* ===== BOTONES DE SECCIONES ===== */
@@ -45,7 +43,6 @@ header h1 {
   padding: 15px;
 }
 
-/* Ocultar secciones si es necesario */
 .menu-sections.hidden {
   display: none;
 }
@@ -60,7 +57,6 @@ header h1 {
   cursor: pointer;
 }
 
-/* Hover para los botones */
 .menu-sections button:hover {
   background: linear-gradient(145deg, #7a0000, #b00000);
   transform: scale(1.05);
@@ -116,7 +112,6 @@ header h1 {
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
-/* Botón para volver */
 .btn-back {
   margin-top: 25px;
   background: #d4af37;
@@ -155,6 +150,10 @@ header h1 {
   font-weight: bold;
 }
 
+/* ================================================= */
+/* ===== AGREGADOS (BANNER + BOTONES) ===== */
+/* ================================================= */
+
 /* ===== BANNER PUBLICITARIO ===== */
 .banner-publicitario {
   width: 100%;
@@ -173,4 +172,50 @@ header h1 {
 
 .banner-img.active {
   display: block;
+}
+
+/* ===== DESTELLO DORADO ===== */
+@keyframes destello-dorado {
+  0% { box-shadow: 0 0 8px #d4af37; }
+  50% { box-shadow: 0 0 22px #ffd700; }
+  100% { box-shadow: 0 0 8px #d4af37; }
+}
+
+/* ===== BOTÓN WHATSAPP ===== */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 65px;
+  height: 65px;
+  background: radial-gradient(circle, #ffd700, #b8860b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: destello-dorado 2s infinite;
+  z-index: 9999;
+}
+
+.btn-whatsapp img {
+  width: 34px;
+}
+
+/* ===== BOTÓN DIRECCIÓN ===== */
+.btn-direccion {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  background: radial-gradient(circle, #ffd700, #b8860b);
+  color: #4d0000;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  animation: destello-dorado 2s infinite;
+  z-index: 9999;
 }
