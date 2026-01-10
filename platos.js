@@ -199,13 +199,6 @@ Opciones:
     { nombre: "Banquete de la Serpiente (10p)", precio: "S/495", img: "10p.jpg", descripcion: "Carne, arroz, fideos" }
   ],
 };
-const sectionsDiv = document.getElementById("sections");
-const contentDiv = document.getElementById("content");
-
-/* ===== DATOS COMPLETOS CON TUS 180 PLATOS ===== */
-const data = {
-  /* aquí van tus 180 platos tal cual los tienes */
-};
 
 /* ===== CREAR BOTONES DE SECCIÓN ===== */
 for (let section in data) {
