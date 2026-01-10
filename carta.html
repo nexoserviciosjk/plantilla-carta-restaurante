@@ -4,19 +4,17 @@
   <meta charset="UTF-8">
   <title>San Joy Lao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Archivo de estilos principal -->
   <link rel="stylesheet" href="diseño.css">
 </head>
 <body>
 
 <!-- ===== HEADER ===== -->
 <header>
-  <!-- Nombre del restaurante -->
   <h1>CHIFA SAN JOY LAO</h1>
 </header>
 
 <!-- ===== BANNER PUBLICITARIO ===== -->
-<section class="banner-publicitario">
+<section class="banner-publicitario" id="banner-publicitario">
   <img src="pub1.jpg" class="banner-img active">
   <img src="pub2.jpg" class="banner-img">
   <img src="pub3.jpg" class="banner-img">
@@ -29,24 +27,21 @@
 <main class="platos" id="content"></main>
 
 <!-- ===== BOTÓN WHATSAPP ===== -->
-<a href="https://wa.me/51999999999"
-   class="btn-whatsapp"
-   target="_blank">
-  <img src="whatsapp.png" alt="WhatsApp">
+<a href="https://wa.me/51999999999" class="btn-whatsapp" target="_blank">
+  <i class="fab fa-whatsapp"></i> <!-- icono de WhatsApp con fontawesome -->
 </a>
 
 <!-- ===== BOTÓN DIRECCIÓN ===== -->
-<a href="https://maps.google.com/?q=CHIFA+SAN+JOY+LAO"
-   class="btn-direccion"
-   target="_blank">
+<a href="https://maps.google.com/?q=CHIFA+SAN+JOY+LAO" class="btn-direccion" target="_blank">
   📍
 </a>
 
 <!-- ===== SCRIPT ORIGINAL ===== -->
 <script src="platos.js"></script>
 
-<!-- ===== SCRIPT CARRUSEL ===== -->
+<!-- ===== SCRIPT CARRUSEL + OCULTAR BANNER ===== -->
 <script>
+  // Carrusel de banner
   const banners = document.querySelectorAll('.banner-img');
   let index = 0;
 
@@ -55,7 +50,20 @@
     index = (index + 1) % banners.length;
     banners[index].classList.add('active');
   }, 3500);
+
+  // Ocultar banner al entrar en sección
+  const sectionsButtons = document.querySelectorAll('.menu-sections button');
+  const banner = document.getElementById('banner-publicitario');
+
+  sectionsButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      banner.style.display = 'none'; // desaparece el banner al seleccionar sección
+    });
+  });
 </script>
+
+<!-- ===== FONT AWESOME PARA ICONO WHATSAPP ===== -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
