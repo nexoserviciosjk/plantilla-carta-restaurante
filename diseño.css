@@ -188,17 +188,15 @@ header h1 {
   right: 20px;
   width: 65px;
   height: 65px;
-  background: radial-gradient(circle, #ffd700, #b8860b);
+  background: #25d366;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: destello-dorado 2s infinite;
+  color: #fff;
+  font-size: 28px;
   z-index: 9999;
-}
-
-.btn-whatsapp img {
-  width: 34px;
+  box-shadow: 0 0 8px #d4af37;
 }
 
 /* ===== BOTÓN DIRECCIÓN ===== */
