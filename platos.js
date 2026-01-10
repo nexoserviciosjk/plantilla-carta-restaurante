@@ -207,10 +207,10 @@ const ad = document.getElementById('ad-container');
 function handleAd(show = false) {
   if (!ad) return;
   if (!adShown && show) {
-    ad.style.display = 'block';  // Mostrar publicidad la primera vez
+    ad.style.display = 'block';
     adShown = true;
   } else {
-    ad.style.display = 'none';   // Ocultar publicidad después
+    ad.style.display = 'none';
   }
 }
 
@@ -229,8 +229,6 @@ window.onload = () => handleAd(true);
 function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
-
-  // Ocultar publicidad al entrar en la lista de platos
   handleAd(false);
 
   data[section].forEach(item => {
@@ -244,8 +242,6 @@ function showList(section) {
 
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
-
-  // Ocultar publicidad al entrar en detalle
   handleAd(false);
 
   contentDiv.innerHTML = `<div class="plato-detalle"></div>`;
