@@ -200,6 +200,9 @@ Opciones:
   ],
 };
 
+/* ===== VARIABLE PARA CONTROLAR PUBLICIDAD ===== */
+let adShown = false;
+
 /* ===== CREAR BOTONES DE SECCIÓN ===== */
 for (let section in data) {
   const btn = document.createElement("button");
@@ -211,7 +214,10 @@ for (let section in data) {
 /* ===== MOSTRAR PUBLICIDAD AL INICIO ===== */
 window.onload = () => {
   const ad = document.getElementById('ad-container');
-  if (ad) ad.style.display = 'block';
+  if (ad && !adShown) {
+    ad.style.display = 'block';
+    adShown = true; // Marca que la publicidad ya se mostró
+  }
 };
 
 /* ===== FUNCIONES ===== */
@@ -227,13 +233,15 @@ function showList(section) {
     contentDiv.appendChild(div);
   });
 
-  // Mostrar publicidad al volver a la lista
+  // Ocultar publicidad al entrar en la lista de platos
   const ad = document.getElementById('ad-container');
-  if (ad) ad.style.display = 'block';
+  if (ad) ad.style.display = 'none';
 }
 
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
+  
+  // Ocultar publicidad al entrar en detalle
   const ad = document.getElementById('ad-container');
   if (ad) ad.style.display = 'none';
 
