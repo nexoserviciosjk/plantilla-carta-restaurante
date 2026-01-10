@@ -200,8 +200,19 @@ Opciones:
   ],
 };
 
-/* ===== VARIABLE PARA CONTROLAR PUBLICIDAD ===== */
+/* ===== CONTROL DE PUBLICIDAD ===== */
 let adShown = false;
+const ad = document.getElementById('ad-container');
+
+function handleAd(show = false) {
+  if (!ad) return;
+  if (!adShown && show) {
+    ad.style.display = 'block';  // Mostrar publicidad la primera vez
+    adShown = true;
+  } else {
+    ad.style.display = 'none';   // Ocultar publicidad después
+  }
+}
 
 /* ===== CREAR BOTONES DE SECCIÓN ===== */
 for (let section in data) {
@@ -212,18 +223,15 @@ for (let section in data) {
 }
 
 /* ===== MOSTRAR PUBLICIDAD AL INICIO ===== */
-window.onload = () => {
-  const ad = document.getElementById('ad-container');
-  if (ad && !adShown) {
-    ad.style.display = 'block';
-    adShown = true; // Marca que la publicidad ya se mostró
-  }
-};
+window.onload = () => handleAd(true);
 
 /* ===== FUNCIONES ===== */
 function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
+
+  // Ocultar publicidad al entrar en la lista de platos
+  handleAd(false);
 
   data[section].forEach(item => {
     const div = document.createElement("div");
@@ -232,18 +240,13 @@ function showList(section) {
     div.onclick = () => showDetail(item, section);
     contentDiv.appendChild(div);
   });
-
-  // Ocultar publicidad al entrar en la lista de platos
-  const ad = document.getElementById('ad-container');
-  if (ad) ad.style.display = 'none';
 }
 
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
-  
+
   // Ocultar publicidad al entrar en detalle
-  const ad = document.getElementById('ad-container');
-  if (ad) ad.style.display = 'none';
+  handleAd(false);
 
   contentDiv.innerHTML = `<div class="plato-detalle"></div>`;
   const detalleDiv = contentDiv.querySelector('.plato-detalle');
