@@ -16,19 +16,31 @@
 </header>
 
 <!-- ===== BOTONES DE SECCIONES ===== -->
-<!-- Aquí se generarán los botones de las secciones del menú desde JS -->
 <nav class="menu-sections" id="sections"></nav>
 
 <!-- ===== CONTENIDO DE PLATOS ===== -->
-<!-- Aquí se mostrarán los platos o banquetes según la sección seleccionada -->
 <main class="platos" id="content"></main>
-  
-  <!-- ===== PUBLICIDAD ===== -->
+
+<!-- ===== PUBLICIDAD SOLO AL INICIO ===== -->
 <div id="ad-container" style="text-align:center; margin:20px 0;">
-  <img src="publicidad.jpg" alt="Publicidad" style="max-width:600px; width:90%; border-radius:15px; border:2px solid #d4af37;">
+  <img src="publicidad.jpg" alt="Publicidad" id="ad-img" 
+       style="max-width:600px; width:90%; border-radius:15px; border:2px solid #d4af37;">
 </div>
 
 <!-- ===== SCRIPT ===== -->
 <script src="platos.js"></script>
+
+<!-- ===== OCULTAR PUBLICIDAD SI NO EXISTE ===== -->
+<script>
+  const adImg = document.getElementById('ad-img');
+  const adContainer = document.getElementById('ad-container');
+
+  // Ocultar publicidad si la imagen no carga
+  adImg.onerror = () => { adContainer.style.display = 'none'; };
+  if (!adImg.complete || adImg.naturalWidth === 0) {
+    adContainer.style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
