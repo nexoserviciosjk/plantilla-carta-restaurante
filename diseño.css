@@ -1,3 +1,156 @@
+/* ===== FUENTE PERSONALIZADA ===== */
+@font-face {
+  font-family: 'Karate';
+  src: url('Karate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* optimiza la carga */
+}
+
+/* ===== ESTILO GENERAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #2b0000, #120000); /* Fondo general del body */
+  color: #fff;
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 20px;
+  background-image: url('tu-imagen.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-bottom: 3px solid #d4af37; /* Borde dorado */
+}
+
+header h1 {
+  font-family: 'Karate', serif;
+  margin: 0;
+  color: #d4af37;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 3px #000;
+}
+
+/* ===== BOTONES DE SECCIONES ===== */
+.menu-sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+}
+
+.menu-sections.hidden {
+  display: none;
+}
+
+.menu-sections button {
+  background: linear-gradient(145deg, #b00000, #7a0000);
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu-sections button:hover {
+  background: linear-gradient(145deg, #7a0000, #b00000);
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+/* ===== LISTA DE PLATOS ===== */
+.plato-btn {
+  background: #220000;
+  border: 1px solid #d4af37;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.plato-precio {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+/* ===== DETALLE DE PLATO ===== */
+.plato-detalle {
+  text-align: center;
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.plato-detalle h2 {
+  margin: 0 0 10px 0;
+  color: #d4af37;
+  font-size: 1.8rem;
+}
+
+.plato-detalle p {
+  margin: 0 0 20px 0;
+  font-size: 1rem;
+  color: #fff;
+  text-align: left;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.plato-detalle img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 15px;
+  border: 2px solid #d4af37;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Botón para volver */
+.btn-back {
+  margin-top: 25px;
+  background: #d4af37;
+  color: #4d0000;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* ===== BANQUETES ===== */
+.banquete-card {
+  background: linear-gradient(145deg, #200000, #3b0000);
+  border: 2px solid #d4af37;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+
+.banquete-card:hover {
+  transform: translateY(-5px);
+}
+
+.banquete-card h3 {
+  color: #d4af37;
+  margin-bottom: 10px;
+}
+
+.banquete-card p {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
 /* ===== BANNER PUBLICITARIO INFERIOR ===== */
 .banner-inferior {
   width: 100%;
@@ -12,11 +165,15 @@
   width: 100%;
   height: 280px;
   object-fit: cover;
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 .banner-inferior .banner-img.active {
-  display: block;
+  opacity: 1;
 }
 
 /* ===== DESTELLO DORADO ===== */
