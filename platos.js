@@ -199,6 +199,14 @@ Opciones:
     { nombre: "Banquete de la Serpiente (10p)", precio: "S/495", img: "10p.jpg", descripcion: "Carne, arroz, fideos" }
   ],
 };
+const sectionsDiv = document.getElementById("sections");
+const contentDiv = document.getElementById("content");
+
+/* ===== DATOS COMPLETOS CON TUS 180 PLATOS ===== */
+const data = {
+  /* aquí van tus 180 platos tal cual los tienes */
+};
+
 /* ===== CREAR BOTONES DE SECCIÓN ===== */
 for (let section in data) {
   const btn = document.createElement("button");
@@ -207,14 +215,17 @@ for (let section in data) {
   sectionsDiv.appendChild(btn);
 }
 
-/* ===== FUNCIONES ===== */
-function showList(section) {
-  // ✅ Mostrar publicidad al volver a la lista
+/* ===== MOSTRAR PUBLICIDAD AL INICIO ===== */
+window.onload = () => {
   const ad = document.getElementById('ad-container');
   if (ad) ad.style.display = 'block';
+};
 
+/* ===== FUNCIONES ===== */
+function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
+
   data[section].forEach(item => {
     const div = document.createElement("div");
     div.className = "plato-btn";
@@ -222,19 +233,20 @@ function showList(section) {
     div.onclick = () => showDetail(item, section);
     contentDiv.appendChild(div);
   });
+
+  // Mostrar publicidad al volver a la lista
+  const ad = document.getElementById('ad-container');
+  if (ad) ad.style.display = 'block';
 }
 
 function showDetail(item, section) {
-  // ✅ Ocultar botones y publicidad al mostrar detalle
   sectionsDiv.classList.add("hidden");
   const ad = document.getElementById('ad-container');
   if (ad) ad.style.display = 'none';
 
-  // Creamos un contenedor detalle
   contentDiv.innerHTML = `<div class="plato-detalle"></div>`;
   const detalleDiv = contentDiv.querySelector('.plato-detalle');
 
-  // Imagen opcional: solo se muestra si existe físicamente
   if (item.img) {
     const imgTest = new Image();
     imgTest.src = item.img;
@@ -245,14 +257,14 @@ function showDetail(item, section) {
         <br>
         <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
       `;
-    }
+    };
     imgTest.onerror = () => {
       detalleDiv.innerHTML = `
         <p>${item.descripcion}</p>
         <br>
         <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
       `;
-    }
+    };
   } else {
     detalleDiv.innerHTML = `
       <p>${item.descripcion}</p>
