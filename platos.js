@@ -1,8 +1,6 @@
 const sectionsDiv = document.getElementById("sections");
 const contentDiv = document.getElementById("content");
-const whatsappBtn = document.getElementById("whatsapp-float");
-const ad = document.getElementById("ad-container");
-  
+
 /* ===== DATOS COMPLETOS CON DESCRIPCION ===== */
 const data = {
   "Carnes": [
@@ -199,7 +197,22 @@ Opciones:
     { nombre: "Banquete de la Abundancia (6p)", precio: "S/300", img: "6p.jpg", descripcion: "Carne, arroz, fideos" },
     { nombre: "Banquete de la Fortuna (8p)", precio: "S/390", img: "8p.jpg", descripcion: "Carne, arroz, fideos" },
     { nombre: "Banquete de la Serpiente (10p)", precio: "S/495", img: "10p.jpg", descripcion: "Carne, arroz, fideos" }
+  ],
 };
+
+/* ===== CONTROL DE PUBLICIDAD ===== */
+let adShown = false;
+const ad = document.getElementById('ad-container');
+
+function handleAd(show = false) {
+  if (!ad) return;
+  if (!adShown && show) {
+    ad.style.display = 'block';
+    adShown = true;
+  } else {
+    ad.style.display = 'none';
+  }
+}
 
 /* ===== CREAR BOTONES DE SECCIÓN ===== */
 for (let section in data) {
@@ -209,42 +222,54 @@ for (let section in data) {
   sectionsDiv.appendChild(btn);
 }
 
-/* ===== INICIO ===== */
-window.onload = () => {
-  handleAd(true);
-  whatsappBtn.style.display = "flex"; // SOLO EN HOME
-};
+/* ===== MOSTRAR PUBLICIDAD AL INICIO ===== */
+window.onload = () => handleAd(true);
 
-/* ===== LISTA DE PLATOS ===== */
+/* ===== FUNCIONES ===== */
 function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
   handleAd(false);
-  whatsappBtn.style.display = "none";
 
   data[section].forEach(item => {
     const div = document.createElement("div");
     div.className = "plato-btn";
-    div.innerHTML = `
-      <span>${item.nombre}</span>
-      <span class="plato-precio">${item.precio}</span>
-    `;
+    div.innerHTML = `<span>${item.nombre}</span><span class="plato-precio">${item.precio}</span>`;
     div.onclick = () => showDetail(item, section);
     contentDiv.appendChild(div);
   });
 }
 
-/* ===== DETALLE ===== */
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
-  whatsappBtn.style.display = "none";
+  handleAd(false);
 
-  contentDiv.innerHTML = `
-    <div class="plato-detalle">
-      <p>${item.descripcion || ""}</p>
-      <button class="btn-back" onclick="showList('${section}')">
-        ⬅ Regresar
-      </button>
-    </div>
-  `;
+  contentDiv.innerHTML = `<div class="plato-detalle"></div>`;
+  const detalleDiv = contentDiv.querySelector('.plato-detalle');
+
+  if (item.img) {
+    const imgTest = new Image();
+    imgTest.src = item.img;
+    imgTest.onload = () => {
+      detalleDiv.innerHTML = `
+        <p>${item.descripcion}</p>
+        <img src="${item.img}" alt="${item.nombre}">
+        <br>
+        <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
+      `;
+    };
+    imgTest.onerror = () => {
+      detalleDiv.innerHTML = `
+        <p>${item.descripcion}</p>
+        <br>
+        <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
+      `;
+    };
+  } else {
+    detalleDiv.innerHTML = `
+      <p>${item.descripcion}</p>
+      <br>
+      <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
+    `;
+  }
 }
