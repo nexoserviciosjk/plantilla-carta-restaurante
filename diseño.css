@@ -1,10 +1,11 @@
 @font-face {
   font-family: 'Karate';
   src: url('Karate.ttf') format('truetype');
-  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
 }
 
-/* ===== ESTILO GENERAL ===== */
+/* ===== GENERAL ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -16,22 +17,26 @@ body {
 header {
   text-align: center;
   padding: 20px;
-  background-image: url('tu-imagen.jpg');
+  background-image: url('san-joy-lao-logo.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-bottom: 3px solid #d4af37;
 }
 
-header h1 {
-  font-family: 'Karate', serif;
-  color: #d4af37;
-  letter-spacing: 2px;
-  margin: 0;
-  text-shadow: 1px 1px 3px #000;
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
 }
 
-/* ===== SECCIONES ===== */
+header h1 {
+  font-family: 'Karate', serif;
+  margin: 0;
+  color: #d4af37;
+  letter-spacing: 2px;
+}
+
+/* ===== BOTONES SECCIONES ===== */
 .menu-sections {
   display: flex;
   flex-wrap: wrap;
@@ -52,12 +57,6 @@ header h1 {
   border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.3s, background 0.3s;
-}
-
-.menu-sections button:hover {
-  background: linear-gradient(145deg, #7a0000, #b00000);
-  transform: scale(1.05);
 }
 
 /* ===== LISTA DE PLATOS ===== */
@@ -69,13 +68,7 @@ header h1 {
   margin: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.plato-btn:hover {
-  transform: scale(1.02);
 }
 
 .plato-precio {
@@ -83,83 +76,108 @@ header h1 {
   font-weight: bold;
 }
 
-/* ===== DETALLE DE PLATO ===== */
+/* ===== DETALLE PLATO ===== */
 .plato-detalle {
   text-align: center;
   padding: 20px;
+  width: 90%;
+  margin: 0 auto;
 }
 
-.plato-detalle h2 {
-  color: #d4af37;
+.plato-detalle p {
+  margin: 0 0 20px 0;
+  font-size: 1.1rem;
+  color: #fff;
+  text-align: left;
+  line-height: 1.6;
+  white-space: pre-line;
 }
 
 .plato-detalle img {
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
+  height: auto;
   border-radius: 15px;
   border: 2px solid #d4af37;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
-/* ===== BOTÓN VOLVER ===== */
+/* ===== BOTÓN REGRESAR ===== */
 .btn-back {
   margin-top: 25px;
   background: #d4af37;
   color: #4d0000;
+  border: none;
   padding: 12px 25px;
   border-radius: 25px;
-  border: none;
-  cursor: pointer;
   font-weight: bold;
-  font-size: 1.05rem;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
-/* ===== PUBLICIDAD ===== */
-#ad-container {
-  text-align: center;
-  margin: 20px 0;
+/* ================================================= */
+/* ===== PUBLICIDAD SOLO INICIO (CARRUSEL) ===== */
+/* ================================================= */
+
+.publicidad-inicio {
+  width: 100%;
+  padding: 20px 0 40px;
+  display: flex;
+  justify-content: center;
 }
 
-#ad-container img {
-  max-width: 600px;
+.publicidad-img {
   width: 90%;
+  max-width: 1000px;
+}
+
+.publicidad-img img {
+  width: 100%;
+  height: auto;
   border-radius: 15px;
   border: 2px solid #d4af37;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
 }
 
-/* ===== BOTÓN WHATSAPP FLOTANTE ===== */
-#whatsapp-float {
+.publicidad-img img.visible {
+  opacity: 1;
+}
+
+/* ================================================= */
+/* ===== BOTÓN FLOTANTE WHATSAPP ===== */
+/* ================================================= */
+
+.whatsapp-float {
   position: fixed;
-  bottom: 22px;
-  right: 22px;
-  width: 66px;
-  height: 66px;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
   border-radius: 50%;
-  background: radial-gradient(circle, #d4af37 20%, #7a0000 70%);
-  border: 2px solid #d4af37;
-  display: none;
-  justify-content: center;
+  display: flex;
   align-items: center;
-  z-index: 9999;
-  animation: waGlow 1.5s infinite alternate;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 0 15px #d4af37;
+  animation: pulseGold 2s infinite;
+  z-index: 999;
 }
 
-#whatsapp-float img {
-  width: 34px;
-  height: 34px;
+.whatsapp-icon {
+  font-size: 28px;
+  color: #fff;
 }
 
-/* ===== EFECTO BRILLO ===== */
-@keyframes waGlow {
-  from {
-    box-shadow: 
-      0 0 8px #d4af37,
-      0 0 15px rgba(212,175,55,0.6);
+/* Animación pulso dorado */
+@keyframes pulseGold {
+  0% {
+    box-shadow: 0 0 10px #d4af37;
   }
-  to {
-    box-shadow: 
-      0 0 25px #b00000,
-      0 0 45px rgba(176,0,0,0.7);
+  50% {
+    box-shadow: 0 0 25px #d4af37;
+  }
+  100% {
+    box-shadow: 0 0 10px #d4af37;
   }
 }
