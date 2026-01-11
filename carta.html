@@ -4,28 +4,37 @@
   <meta charset="UTF-8">
   <title>San Joy Lao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Enlace al archivo de estilos -->
   <link rel="stylesheet" href="diseño.css">
 </head>
 <body>
 
 <header>
+  <!-- Imagen como archivo suelto (sin carpeta img/) -->
+  <img src="" alt="" class="logo">
   <h1>CHIFA SAN JOY LAO</h1>
 </header>
 
-<nav class="menu-sections" id="sections"></nav>
+<!-- Contenedor para los botones de secciones -->
+<div class="menu-sections" id="sections"></div>
 
-<main class="platos" id="content"></main>
+<!-- Contenedor donde se mostrarán los platos o banquetes -->
+<div class="platos" id="content"></div>
 
-<div id="ad-container"></div>
+<!-- ===== PUBLICIDAD SOLO INICIO ===== -->
+<div class="publicidad-inicio" id="publicidad">
+  <div class="publicidad-img">
+    <img src="" alt="Publicidad">
+  </div>
+</div>
 
-<!-- BOTÓN WHATSAPP -->
-<a id="whatsapp-float"
-   href="https://wa.me/51999999999"
-   target="_blank"
-   aria-label="WhatsApp">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+<!-- ===== BOTÓN FLOTANTE WHATSAPP ===== -->
+<a href="#" class="whatsapp-float" id="btnWhatsapp" target="_blank" aria-label="WhatsApp">
+  <span class="whatsapp-icon">💬</span>
 </a>
 
+<!-- Enlace al archivo de datos e interactividad -->
 <script src="platos.js"></script>
+
 </body>
 </html>
