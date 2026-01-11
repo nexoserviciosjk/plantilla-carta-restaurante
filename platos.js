@@ -1,6 +1,15 @@
 const sectionsDiv = document.getElementById("sections");
 const contentDiv = document.getElementById("content");
+const whatsappBtn = document.getElementById("whatsapp-float");
 
+let adShown = false;
+const ad = document.getElementById('ad-container');
+
+/* CONTROL PUBLICIDAD */
+function handleAd(show = false) {
+  if (!ad) return;
+  ad.style.display = show ? 'block' : 'none';
+  
 /* ===== DATOS COMPLETOS CON DESCRIPCION ===== */
 const data = {
   "Carnes": [
@@ -200,21 +209,7 @@ Opciones:
   ],
 };
 
-/* ===== CONTROL DE PUBLICIDAD ===== */
-let adShown = false;
-const ad = document.getElementById('ad-container');
-
-function handleAd(show = false) {
-  if (!ad) return;
-  if (!adShown && show) {
-    ad.style.display = 'block';
-    adShown = true;
-  } else {
-    ad.style.display = 'none';
-  }
-}
-
-/* ===== CREAR BOTONES DE SECCIÓN ===== */
+/* CREAR BOTONES */
 for (let section in data) {
   const btn = document.createElement("button");
   btn.textContent = section;
@@ -222,14 +217,17 @@ for (let section in data) {
   sectionsDiv.appendChild(btn);
 }
 
-/* ===== MOSTRAR PUBLICIDAD AL INICIO ===== */
-window.onload = () => handleAd(true);
+/* INICIO */
+window.onload = () => {
+  handleAd(true);
+  whatsappBtn.style.display = "flex";
+};
 
-/* ===== FUNCIONES ===== */
 function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
   handleAd(false);
+  whatsappBtn.style.display = "none";
 
   data[section].forEach(item => {
     const div = document.createElement("div");
@@ -242,34 +240,12 @@ function showList(section) {
 
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
-  handleAd(false);
+  whatsappBtn.style.display = "none";
 
-  contentDiv.innerHTML = `<div class="plato-detalle"></div>`;
-  const detalleDiv = contentDiv.querySelector('.plato-detalle');
-
-  if (item.img) {
-    const imgTest = new Image();
-    imgTest.src = item.img;
-    imgTest.onload = () => {
-      detalleDiv.innerHTML = `
-        <p>${item.descripcion}</p>
-        <img src="${item.img}" alt="${item.nombre}">
-        <br>
-        <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
-      `;
-    };
-    imgTest.onerror = () => {
-      detalleDiv.innerHTML = `
-        <p>${item.descripcion}</p>
-        <br>
-        <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
-      `;
-    };
-  } else {
-    detalleDiv.innerHTML = `
+  contentDiv.innerHTML = `
+    <div class="plato-detalle">
       <p>${item.descripcion}</p>
-      <br>
       <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
-    `;
-  }
+    </div>
+  `;
 }
