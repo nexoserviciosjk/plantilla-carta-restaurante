@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>San Joy Lao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Archivo de estilos principal -->
   <link rel="stylesheet" href="diseño.css">
 </head>
 <body>
@@ -23,13 +22,17 @@
 <!-- ===== PUBLICIDAD SOLO AL INICIO ===== -->
 <div id="ad-container" style="text-align:center; margin:20px 0;"></div>
 
+<!-- ===== BOTÓN WHATSAPP ===== -->
+<a id="whatsapp-float" href="https://wa.me/51987654321" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>
+
 <!-- ===== SCRIPTS ===== -->
 <script src="platos.js"></script>
 
-<!-- ===== PUBLICIDAD DINÁMICA ===== -->
 <script>
   const adContainer = document.getElementById('ad-container');
-  const adImgSrc = 'publicidad.jpg'; // ruta de tu imagen de publicidad
+  const adImgSrc = 'publicidad.jpg';
 
   if (adImgSrc) {
     const imgTest = new Image();
@@ -46,8 +49,6 @@
       img.style.boxShadow = "0 8px 20px rgba(0,0,0,0.5)";
       adContainer.appendChild(img);
     };
-
-    // Si la imagen no carga, no se agrega nada → contenedor queda vacío
   }
 </script>
 
