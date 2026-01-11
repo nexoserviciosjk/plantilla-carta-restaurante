@@ -8,49 +8,21 @@
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
 <header>
   <h1>CHIFA SAN JOY LAO</h1>
 </header>
 
-<!-- ===== BOTONES DE SECCIONES ===== -->
 <nav class="menu-sections" id="sections"></nav>
 
-<!-- ===== CONTENIDO DE PLATOS ===== -->
 <main class="platos" id="content"></main>
 
-<!-- ===== PUBLICIDAD SOLO AL INICIO ===== -->
-<div id="ad-container" style="text-align:center; margin:20px 0;"></div>
+<div id="ad-container"></div>
 
-<!-- ===== BOTÓN WHATSAPP ===== -->
-<a id="whatsapp-float" href="https://wa.me/51987654321" target="_blank">
+<!-- BOTÓN WHATSAPP -->
+<a id="whatsapp-float" href="https://wa.me/51999999999" target="_blank">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
 
-<!-- ===== SCRIPTS ===== -->
 <script src="platos.js"></script>
-
-<script>
-  const adContainer = document.getElementById('ad-container');
-  const adImgSrc = 'publicidad.jpg';
-
-  if (adImgSrc) {
-    const imgTest = new Image();
-    imgTest.src = adImgSrc;
-
-    imgTest.onload = () => {
-      const img = document.createElement('img');
-      img.src = adImgSrc;
-      img.alt = "Publicidad";
-      img.style.maxWidth = "600px";
-      img.style.width = "90%";
-      img.style.borderRadius = "15px";
-      img.style.border = "2px solid #d4af37";
-      img.style.boxShadow = "0 8px 20px rgba(0,0,0,0.5)";
-      adContainer.appendChild(img);
-    };
-  }
-</script>
-
 </body>
 </html>
