@@ -1,14 +1,7 @@
 const sectionsDiv = document.getElementById("sections");
 const contentDiv = document.getElementById("content");
 const whatsappBtn = document.getElementById("whatsapp-float");
-
-let adShown = false;
-const ad = document.getElementById('ad-container');
-
-/* CONTROL PUBLICIDAD */
-function handleAd(show = false) {
-  if (!ad) return;
-  ad.style.display = show ? 'block' : 'none';
+const ad = document.getElementById("ad-container");
   
 /* ===== DATOS COMPLETOS CON DESCRIPCION ===== */
 const data = {
@@ -206,10 +199,11 @@ Opciones:
     { nombre: "Banquete de la Abundancia (6p)", precio: "S/300", img: "6p.jpg", descripcion: "Carne, arroz, fideos" },
     { nombre: "Banquete de la Fortuna (8p)", precio: "S/390", img: "8p.jpg", descripcion: "Carne, arroz, fideos" },
     { nombre: "Banquete de la Serpiente (10p)", precio: "S/495", img: "10p.jpg", descripcion: "Carne, arroz, fideos" }
-  ],
+  ]
+  // (el resto de tu data queda igual, no la modifiqué)
 };
 
-/* CREAR BOTONES */
+/* ================= CREAR BOTONES ================= */
 for (let section in data) {
   const btn = document.createElement("button");
   btn.textContent = section;
@@ -217,34 +211,39 @@ for (let section in data) {
   sectionsDiv.appendChild(btn);
 }
 
-/* INICIO */
+/* ================= INICIO ================= */
 window.onload = () => {
   handleAd(true);
-  whatsappBtn.style.display = "flex";
+  whatsappBtn.style.display = "flex"; // SOLO EN INICIO
 };
 
+/* ================= LISTA ================= */
 function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
   handleAd(false);
-  whatsappBtn.style.display = "none";
+  whatsappBtn.style.display = "none"; // OCULTAR
 
   data[section].forEach(item => {
     const div = document.createElement("div");
     div.className = "plato-btn";
-    div.innerHTML = `<span>${item.nombre}</span><span class="plato-precio">${item.precio}</span>`;
+    div.innerHTML = `
+      <span>${item.nombre}</span>
+      <span class="plato-precio">${item.precio}</span>
+    `;
     div.onclick = () => showDetail(item, section);
     contentDiv.appendChild(div);
   });
 }
 
+/* ================= DETALLE ================= */
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
-  whatsappBtn.style.display = "none";
+  whatsappBtn.style.display = "none"; // OCULTAR
 
   contentDiv.innerHTML = `
     <div class="plato-detalle">
-      <p>${item.descripcion}</p>
+      <p>${item.descripcion || ""}</p>
       <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
     </div>
   `;
