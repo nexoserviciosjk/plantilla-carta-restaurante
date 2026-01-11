@@ -199,11 +199,9 @@ Opciones:
     { nombre: "Banquete de la Abundancia (6p)", precio: "S/300", img: "6p.jpg", descripcion: "Carne, arroz, fideos" },
     { nombre: "Banquete de la Fortuna (8p)", precio: "S/390", img: "8p.jpg", descripcion: "Carne, arroz, fideos" },
     { nombre: "Banquete de la Serpiente (10p)", precio: "S/495", img: "10p.jpg", descripcion: "Carne, arroz, fideos" }
-  ]
-  // (el resto de tu data queda igual, no la modifiqué)
 };
 
-/* ================= CREAR BOTONES ================= */
+/* ===== CREAR BOTONES DE SECCIÓN ===== */
 for (let section in data) {
   const btn = document.createElement("button");
   btn.textContent = section;
@@ -211,18 +209,18 @@ for (let section in data) {
   sectionsDiv.appendChild(btn);
 }
 
-/* ================= INICIO ================= */
+/* ===== INICIO ===== */
 window.onload = () => {
   handleAd(true);
-  whatsappBtn.style.display = "flex"; // SOLO EN INICIO
+  whatsappBtn.style.display = "flex"; // SOLO EN HOME
 };
 
-/* ================= LISTA ================= */
+/* ===== LISTA DE PLATOS ===== */
 function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
   handleAd(false);
-  whatsappBtn.style.display = "none"; // OCULTAR
+  whatsappBtn.style.display = "none";
 
   data[section].forEach(item => {
     const div = document.createElement("div");
@@ -236,15 +234,17 @@ function showList(section) {
   });
 }
 
-/* ================= DETALLE ================= */
+/* ===== DETALLE ===== */
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
-  whatsappBtn.style.display = "none"; // OCULTAR
+  whatsappBtn.style.display = "none";
 
   contentDiv.innerHTML = `
     <div class="plato-detalle">
       <p>${item.descripcion || ""}</p>
-      <button class="btn-back" onclick="showList('${section}')">⬅ Regresar</button>
+      <button class="btn-back" onclick="showList('${section}')">
+        ⬅ Regresar
+      </button>
     </div>
   `;
 }
