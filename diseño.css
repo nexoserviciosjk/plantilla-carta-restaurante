@@ -136,7 +136,7 @@ header h1 {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 1s ease, opacity 1s ease;
+  transition: transform 3s ease, opacity 3s ease;
 }
 
 .publicidad-indicators {
