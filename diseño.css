@@ -135,12 +135,12 @@ header h1 {
   height: auto;
   border-radius: 15px;
   border: 2px solid #d4af37;
-  opacity: 0;
+  opacity: 3;
   transition: opacity 2s ease-in-out;
 }
 
 .publicidad-img img.visible {
-  opacity: 3;
+  opacity: 1;
 }
 
 /* ================================================= */
