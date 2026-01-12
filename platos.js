@@ -8,12 +8,14 @@ const btnWhatsapp = document.getElementById("btnWhatsapp");
 const publicidadImgs = [
   "publicidad1.jpg",
   "publicidad2.jpg"
+  // Puedes agregar más imágenes aquí
 ];
-const publicidadTiempo = 4000; // cada 4 segundos cambia la imagen
+const publicidadTiempo = 5000; // 5s para ver la imagen completa
 
 const whatsappNumero = "51999999999";
 const whatsappMensaje = "Hola, vi su menú en San Joy Lao";
 
+// ==== Datos de los platos ====
 const data = {
   "Carnes": [
     { nombre: "Carne de Res Saltada en Salsa de Ostión o Tausí", precio: "S/48", img: "carne-ostion.jpg", descripcion: "Carne, arroz, fideos" },
@@ -212,11 +214,12 @@ Opciones:
   ],
 };
 
-/* ===== LISTA DE PLATOS ===== */
+// ==== LISTA DE PLATOS ====
 function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
-  ocultarInicio();
+  publicidadDiv.style.display = "flex";
+  btnWhatsapp.style.display = "flex";
 
   data[section].forEach(item => {
     const div = document.createElement("div");
@@ -230,7 +233,7 @@ function showList(section) {
   });
 }
 
-/* ===== DETALLE DEL PLATO ===== */
+// ==== DETALLE DEL PLATO ====
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
   publicidadDiv.style.display = "none";
@@ -254,7 +257,6 @@ function showDetail(item, section) {
     imgTest.onload = () => {
       detalleDiv.innerHTML = `${descripcionHTML}<img src="${item.img}" alt="${item.nombre}">${botonesHTML}`;
     };
-
     imgTest.onerror = () => {
       detalleDiv.innerHTML = `${descripcionHTML}${botonesHTML}`;
     };
@@ -269,7 +271,7 @@ function volverInicio() {
   mostrarPublicidad();
 }
 
-/* ===== PUBLICIDAD ===== */
+// ==== PUBLICIDAD (CARRUSEL) ====
 let publicidadIndex = 0;
 let publicidadInterval = null;
 
@@ -310,18 +312,16 @@ function mostrarPublicidad() {
 }
 
 function cargarImagenPublicidad(src) {
-  const imgTest = new Image();
-  imgTest.src = src;
-  imgTest.onload = () => {
-    // efecto deslizamiento lento
-    publicidadImg.style.transition = "transform 4s ease, opacity 4s ease";
-    publicidadImg.style.transform = "translateX(100%)";
-    publicidadImg.style.opacity = "0";
+  // efecto de deslizamiento suave
+  publicidadImg.style.opacity = "0";
+  publicidadImg.style.transform = "translateX(100%)";
 
-    setTimeout(() => {
-      publicidadImg.src = src;
-      publicidadImg.style.transform = "translateX(0)";
-      publicidadImg.style.opacity = "1";
-    }, 50); // pequeño delay para que la transición se aplique
-  };
+  setTimeout(() => {
+    publicidadImg.src = src;
+    publicidadImg.style.transform = "translateX(0)";
+    publicidadImg.style.opacity = "1";
+  }, 50);
 }
+
+// ==== INICIO ====
+mostrarPublicidad();
