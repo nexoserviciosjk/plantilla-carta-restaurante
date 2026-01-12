@@ -317,11 +317,13 @@ function cargarImagenPublicidad(src) {
   publicidadImg.style.transform = "translateX(100%)";
 
   setTimeout(() => {
-    publicidadImg.src = src;
-    publicidadImg.style.transform = "translateX(0)";
+    publicidadImg.src = src; // ✅ corregido
     publicidadImg.style.opacity = "1";
-  }, 50);
+    publicidadImg.style.transform = "translateX(0)";
+  }, 400); // ajusta según tu CSS transition
 }
 
-// ==== INICIO ====
-mostrarPublicidad();
+// ==== INICIAR PUBLICIDAD AL CARGAR ====
+window.onload = () => {
+  mostrarPublicidad();
+};
