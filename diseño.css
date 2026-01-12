@@ -86,7 +86,7 @@ header h1 {
 
 .plato-detalle p {
   margin: 0 0 20px 0;
-  font-size: 1.1rem; /* este es tamaño de texto en detalle del plato */
+  font-size: 1rem; /* este es tamaño de texto en detalle del plato */
   color: #fff;
   text-align: left;
   line-height: 1.6;
