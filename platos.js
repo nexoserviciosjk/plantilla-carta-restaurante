@@ -330,4 +330,16 @@ function ocultarInicio() {
   if (publicidadInterval) clearInterval(publicidadInterval);
 }
 
-/* ===
+/* ===== WHATSAPP ===== */
+btnWhatsapp.href = `https://wa.me/${whatsappNumero}?text=${encodeURIComponent(whatsappMensaje)}`;
+
+/* ===== INICIAR ===== */
+window.onload = () => {
+  for (let section in data) {
+    const btn = document.createElement("button");
+    btn.textContent = section;
+    btn.onclick = () => showList(section);
+    sectionsDiv.appendChild(btn);
+  }
+  mostrarPublicidad();
+};
