@@ -9,7 +9,7 @@ const publicidadImgs = [
   "publicidad1.jpg",
   "publicidad2.jpg"
 ];
-const publicidadTiempo = 4000;
+const publicidadTiempo = 4000; // cada 4 segundos cambia la imagen
 
 const whatsappNumero = "51999999999";
 const whatsappMensaje = "Hola, vi su menú en San Joy Lao";
@@ -313,56 +313,15 @@ function cargarImagenPublicidad(src) {
   const imgTest = new Image();
   imgTest.src = src;
   imgTest.onload = () => {
+    // efecto deslizamiento lento
+    publicidadImg.style.transition = "transform 4s ease, opacity 4s ease";
     publicidadImg.style.transform = "translateX(100%)";
-    publicidadImg.classList.remove("visible");
+    publicidadImg.style.opacity = "0";
+
     setTimeout(() => {
       publicidadImg.src = src;
       publicidadImg.style.transform = "translateX(0)";
-      publicidadImg.classList.add("visible");
-    }, 50);
+      publicidadImg.style.opacity = "1";
+    }, 50); // pequeño delay para que la transición se aplique
   };
 }
-
-/* ===== SWIPE PARA CELULAR ===== */
-let startX = 0;
-let endX = 0;
-
-publicidadImg.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
-publicidadImg.addEventListener("touchmove", e => { endX = e.touches[0].clientX; });
-publicidadImg.addEventListener("touchend", () => {
-  if (startX - endX > 30) { // swipe izquierda
-    publicidadIndex = (publicidadIndex + 1) % publicidadImgs.length;
-  } else if (endX - startX > 30) { // swipe derecha
-    publicidadIndex = (publicidadIndex - 1 + publicidadImgs.length) % publicidadImgs.length;
-  }
-  cargarImagenPublicidad(publicidadImgs[publicidadIndex]);
-  updateIndicators();
-});
-
-/* ===== CLICK PARA PASAR IMAGEN ===== */
-publicidadImg.addEventListener("click", () => {
-  publicidadIndex = (publicidadIndex + 1) % publicidadImgs.length;
-  cargarImagenPublicidad(publicidadImgs[publicidadIndex]);
-  updateIndicators();
-});
-
-/* ===== OCULTAR INICIO ===== */
-function ocultarInicio() {
-  publicidadDiv.style.display = "none";
-  btnWhatsapp.style.display = "none";
-  if (publicidadInterval) clearInterval(publicidadInterval);
-}
-
-/* ===== WHATSAPP ===== */
-btnWhatsapp.href = `https://wa.me/${whatsappNumero}?text=${encodeURIComponent(whatsappMensaje)}`;
-
-/* ===== INICIAR ===== */
-window.onload = () => {
-  for (let section in data) {
-    const btn = document.createElement("button");
-    btn.textContent = section;
-    btn.onclick = () => showList(section);
-    sectionsDiv.appendChild(btn);
-  }
-  mostrarPublicidad();
-};
