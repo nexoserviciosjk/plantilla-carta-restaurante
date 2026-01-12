@@ -9,7 +9,7 @@ const publicidadImgs = [
   "publicidad1.jpg",
   "publicidad2.jpg"
 ];
-const publicidadTiempo = 6000;
+const publicidadTiempo = 4000;
 
 const whatsappNumero = "51999999999";
 const whatsappMensaje = "Hola, vi su menú en San Joy Lao";
