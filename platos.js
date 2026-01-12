@@ -1,21 +1,23 @@
 const sectionsDiv = document.getElementById("sections");
 const contentDiv = document.getElementById("content");
 
+/* ===== PUBLICIDAD & WHATSAPP ===== */
 const publicidadDiv = document.getElementById("publicidad");
 const publicidadImg = document.querySelector(".publicidad-img img");
 const btnWhatsapp = document.getElementById("btnWhatsapp");
 
+/* ===== CONFIGURACIÓN EDITABLE ===== */
 const publicidadImgs = [
   "publicidad1.jpg",
   "publicidad2.jpg"
-  // Puedes agregar más imágenes aquí
 ];
-const publicidadTiempo = 5000; // 5s para ver la imagen completa
+
+const publicidadTiempo = 3000;
 
 const whatsappNumero = "51999999999";
 const whatsappMensaje = "Hola, vi su menú en San Joy Lao";
 
-// ==== Datos de los platos ====
+/* ===== DATOS DEL MENÚ ===== */
 const data = {
   "Carnes": [
     { nombre: "Carne de Res Saltada en Salsa de Ostión o Tausí", precio: "S/48", img: "carne-ostion.jpg", descripcion: "Carne, arroz, fideos" },
@@ -213,13 +215,11 @@ Opciones:
     { nombre: "Banquete de la Serpiente (10p)", precio: "S/495", img: "10p.jpg", descripcion: "Carne, arroz, fideos" }
   ],
 };
-
-// ==== LISTA DE PLATOS ====
+/* ===== LISTA DE PLATOS ===== */
 function showList(section) {
   sectionsDiv.classList.remove("hidden");
   contentDiv.innerHTML = "";
-  publicidadDiv.style.display = "flex";
-  btnWhatsapp.style.display = "flex";
+  ocultarInicio();
 
   data[section].forEach(item => {
     const div = document.createElement("div");
@@ -233,7 +233,7 @@ function showList(section) {
   });
 }
 
-// ==== DETALLE DEL PLATO ====
+/* ===== DETALLE DEL PLATO ===== */
 function showDetail(item, section) {
   sectionsDiv.classList.add("hidden");
   publicidadDiv.style.display = "none";
@@ -241,10 +241,11 @@ function showDetail(item, section) {
 
   contentDiv.innerHTML = `<div class="plato-detalle"></div>`;
   const detalleDiv = contentDiv.querySelector(".plato-detalle");
+
   const descripcionHTML = item.descripcion ? `<p>${item.descripcion}</p>` : "";
 
   const botonesHTML = `
-    <div style="display:flex; justify-content:center; gap:10px; margin-top:25px;">
+    <div style="display:flex; justify-content:center; gap:15px; margin-top:25px;">
       <button class="btn-back" onclick="showList('${section}')">⬅️</button>
       <button class="btn-back" onclick="volverInicio()">🏠</button>
     </div>
@@ -255,44 +256,39 @@ function showDetail(item, section) {
     imgTest.src = item.img;
 
     imgTest.onload = () => {
-      detalleDiv.innerHTML = `${descripcionHTML}<img src="${item.img}" alt="${item.nombre}">${botonesHTML}`;
+      detalleDiv.innerHTML = `
+        ${descripcionHTML}
+        <img src="${item.img}" alt="${item.nombre}">
+        ${botonesHTML}
+      `;
     };
+
     imgTest.onerror = () => {
-      detalleDiv.innerHTML = `${descripcionHTML}${botonesHTML}`;
+      detalleDiv.innerHTML = `
+        ${descripcionHTML}
+        ${botonesHTML}
+      `;
     };
   } else {
-    detalleDiv.innerHTML = `${descripcionHTML}${botonesHTML}`;
+    detalleDiv.innerHTML = `
+      ${descripcionHTML}
+      ${botonesHTML}
+    `;
   }
 }
 
+/* ===== VOLVER A INICIO ===== */
 function volverInicio() {
   contentDiv.innerHTML = "";
   sectionsDiv.classList.remove("hidden");
   mostrarPublicidad();
 }
 
-// ==== PUBLICIDAD (CARRUSEL) ====
+/* ================================================= */
+/* ===== PUBLICIDAD (SOLO INICIO) ===== */
+/* ================================================= */
 let publicidadIndex = 0;
 let publicidadInterval = null;
-
-const indicadoresDiv = document.createElement("div");
-indicadoresDiv.className = "publicidad-indicators";
-publicidadDiv.appendChild(indicadoresDiv);
-
-function updateIndicators() {
-  indicadoresDiv.innerHTML = "";
-  publicidadImgs.forEach((_, idx) => {
-    const span = document.createElement("span");
-    span.textContent = "●";
-    if (idx === publicidadIndex) span.classList.add("active");
-    span.onclick = () => {
-      publicidadIndex = idx;
-      cargarImagenPublicidad(publicidadImgs[publicidadIndex]);
-      updateIndicators();
-    };
-    indicadoresDiv.appendChild(span);
-  });
-}
 
 function mostrarPublicidad() {
   if (!publicidadImgs.length) return;
@@ -301,29 +297,37 @@ function mostrarPublicidad() {
   btnWhatsapp.style.display = "flex";
 
   cargarImagenPublicidad(publicidadImgs[publicidadIndex]);
-  updateIndicators();
 
-  if (publicidadInterval) clearInterval(publicidadInterval);
   publicidadInterval = setInterval(() => {
     publicidadIndex = (publicidadIndex + 1) % publicidadImgs.length;
     cargarImagenPublicidad(publicidadImgs[publicidadIndex]);
-    updateIndicators();
   }, publicidadTiempo);
 }
 
 function cargarImagenPublicidad(src) {
-  // efecto de deslizamiento suave
-  publicidadImg.style.opacity = "0";
-  publicidadImg.style.transform = "translateX(100%)";
+  const imgTest = new Image();
+  imgTest.src = src;
 
-  setTimeout(() => {
-    publicidadImg.src = src; // ✅ corregido
-    publicidadImg.style.opacity = "1";
-    publicidadImg.style.transform = "translateX(0)";
-  }, 400); // ajusta según tu CSS transition
+  imgTest.onload = () => {
+    publicidadImg.classList.remove("visible");
+    setTimeout(() => {
+      publicidadImg.src = src;
+      publicidadImg.classList.add("visible");
+    }, 200);
+  };
 }
 
-// ==== INICIAR PUBLICIDAD AL CARGAR ====
-window.onload = () => {
-  mostrarPublicidad();
-};
+/* ===== CLICK PARA PASAR IMAGEN ===== */
+publicidadImg.addEventListener("click", () => {
+  publicidadIndex = (publicidadIndex + 1) % publicidadImgs.length;
+  cargarImagenPublicidad(publicidadImgs[publicidadIndex]);
+});
+
+/* ===== OCULTAR INICIO ===== */
+function ocultarInicio() {
+  publicidadDiv.style.display = "none";
+  btnWhatsapp.style.display = "none";
+  if (publicidadInterval) clearInterval(publicidadInterval);
+}
+
+/* ===
